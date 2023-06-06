@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# docker run -it -p 6080:6080 --rm alpine
+# wget -q -O - https://raw.githubusercontent.com/v1ckm/scripts/main/desktopsetup.sh | sh
+
 # change to home directory
 cd
 
@@ -64,5 +67,8 @@ stdout_logfile=/var/log/x11vnc.log
 stdout_logfile_maxbytes=0
 stdout_logfile_backups=0" | tee -a /etc/supervisor.d/vnc.ini
 
+echo "### DONE ###"
+echo "Visit http://localhost:6080/vnc.html"
+
 # start supervisord
-exec /usr/bin/supervisord -y 0 -z 0
+exec /usr/bin/supervisord -c /etc/supervisord.conf -y 0 -z 0
