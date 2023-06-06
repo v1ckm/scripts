@@ -12,7 +12,7 @@ adduser -D vnc
 su - vnc
 
 # configure supervisord
-cat >$HOME/supervisord.conf <<EOF
+cat >$HOME/supervisord.conf <<'EOF'
 [unix_http_server]
 file=%(here)s/supervisord.sock
 
