@@ -12,7 +12,8 @@ adduser -D vnc
 su - vnc
 
 # configure supervisord
-echo "[unix_http_server]
+cat >$HOME/supervisord.conf <<EOF
+[unix_http_server]
 file=%(here)s/supervisord.sock
 
 [supervisord]
@@ -35,7 +36,7 @@ stdout_logfile_backups=0
 [program:openbox-session]
 autorestart=true
 command=/usr/bin/openbox-session
-environment=DISPLAY=\":0.0\"
+environment=DISPLAY=":0.0"
 priority=2
 redirect_stderr=true
 stdout_logfile=%(here)s/openbox-session.log
@@ -58,7 +59,8 @@ priority=4
 redirect_stderr=true
 stdout_logfile=%(here)s/x11vnc.log
 stdout_logfile_maxbytes=0
-stdout_logfile_backups=0" | tee -a $HOME/supervisord.conf
+stdout_logfile_backups=0
+EOF
 
 # install python2.7 pip
 export PATH=$HOME/.local/bin:$PATH
@@ -69,10 +71,10 @@ python get-pip.py
 pip install pyxdg
 
 # Copy openbox config and autostart firefox
-cp -vr /etc/xdg/openbox ~/.config
-mkdir -v ~/.config/openbox
-echo 'firefox &' | tee -a ~/.config/openbox/autostart
-chmod -v +x ~/.config/openbox/autostart
+cp -r /etc/xdg/openbox ~/.config
+mkdir ~/.config/openbox
+echo 'firefox &' > ~/.config/openbox/autostart
+chmod +x ~/.config/openbox/autostart
 
 # install novnc
 wget https://github.com/novnc/noVNC/archive/refs/tags/v1.4.0.tar.gz
