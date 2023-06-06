@@ -35,7 +35,7 @@ stdout_logfile_backups=0
 [program:openbox-session]
 autorestart=true
 command=/usr/bin/openbox-session
-environment=DISPLAY=":0.0"
+environment=DISPLAY=\":0.0\"
 priority=2
 redirect_stderr=true
 stdout_logfile=%(here)s/openbox-session.log
