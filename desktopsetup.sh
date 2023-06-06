@@ -1,7 +1,8 @@
 #!/bin/sh
 
-# docker run -it -p 6080:6080 --rm alpine
-# wget -q -O - https://raw.githubusercontent.com/v1ckm/scripts/main/desktopsetup.sh | sh
+# INSTRUCTIONS
+# Create Docker container: docker run -it -p 6080:6080 --rm alpine
+# Run script: wget -q -O - https://raw.githubusercontent.com/v1ckm/scripts/main/desktopsetup.sh | sh
 
 # change to home directory
 cd
