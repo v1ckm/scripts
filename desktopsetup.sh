@@ -5,7 +5,9 @@
 # Run script: wget -q -O - https://raw.githubusercontent.com/v1ckm/scripts/main/desktopsetup.sh | sh
 
 # install required packages
-apk --no-cache add bash firefox git openbox python2 python3 supervisor terminus-font ttf-inconsolata xterm xvfb x11vnc
+# apk --no-cache add bash firefox git openbox python2 python3 supervisor terminus-font ttf-inconsolata xterm xvfb x11vnc
+apk --no-cache add bash firefox git openbox python3 py3-pip supervisor terminus-font ttf-inconsolata xterm xvfb x11vnc
+pip3 install pyxdg
 
 # Create vnc user
 adduser -D vnc
@@ -61,11 +63,11 @@ su vnc -c 'echo "stdout_logfile_maxbytes=0" >> $HOME/supervisord.conf'
 su vnc -c 'echo "stdout_logfile_backups=0" >> $HOME/supervisord.conf'
 
 # install python2.7 pip
-su vnc -c 'export PATH=$HOME/.local/bin:$PATH; cd $HOME; wget https://bootstrap.pypa.io/pip/2.7/get-pip.py'
-su vnc -c 'export PATH=$HOME/.local/bin:$PATH; cd $HOME; python get-pip.py'
+#su vnc -c 'export PATH=$HOME/.local/bin:$PATH; cd $HOME; wget https://bootstrap.pypa.io/pip/2.7/get-pip.py'
+#su vnc -c 'export PATH=$HOME/.local/bin:$PATH; cd $HOME; python get-pip.py'
 
 # install pyxdg
-su vnc -c 'export PATH=$HOME/.local/bin:$PATH; cd $HOME; pip install pyxdg'
+#su vnc -c 'export PATH=$HOME/.local/bin:$PATH; cd $HOME; pip install pyxdg'
 
 # Copy openbox config and autostart firefox
 su vnc -c 'cp -r /etc/xdg/openbox ~/.config'
